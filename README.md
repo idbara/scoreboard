@@ -113,29 +113,38 @@ scoreboard/
 │   └── sw.js                   # Service worker untuk penggunaan offline
 ├── src/
 │   ├── components/
-│   │   ├── ActionButtons.jsx   # Tombol aksi input reli di bawah
-│   │   ├── CourtField.jsx      # Visualisasi lapangan wasit horizontal
-│   │   ├── CourtHeader.jsx     # Header lapangan (timer, servis, undo, menu)
-│   │   ├── CourtView.jsx       # Layar utama pertandingan aktif
-│   │   ├── HistoryStatsModal.jsx# Modal riwayat & analitik statistik pemain
-│   │   ├── IntervalOverlay.jsx # Layar jeda interval 11 / 15 poin
-│   │   ├── MenuOverlay.jsx     # Menu reset, laga baru, & riwayat
-│   │   ├── PlayerBox.jsx       # Kartu identitas pemain & indikator kok 🏸
-│   │   ├── Scoreboard.jsx      # Papan skor utama yang sinkron sisi wasit
-│   │   ├── SetupScreen.jsx     # Layar awal input pemain, kategori, & sistem
-│   │   └── WinnerOverlay.jsx   # Layar selebrasi pemenang & ringkasan statistik
+│   │   ├── ActionButtons.tsx   # Tombol aksi input reli di bawah
+│   │   ├── CourtField.tsx      # Visualisasi lapangan wasit horizontal
+│   │   ├── CourtHeader.tsx     # Header lapangan (timer, servis, undo, menu)
+│   │   ├── CourtView.tsx       # Layar utama pertandingan aktif
+│   │   ├── ErrorBoundary.tsx   # Pelindung error runtime aplikasi
+│   │   ├── HistoryStatsModal.tsx# Modal riwayat & analitik statistik pemain
+│   │   ├── IntervalOverlay.tsx # Layar jeda interval dengan opsi tukar sisi
+│   │   ├── MenuOverlay.tsx     # Menu reset, laga baru, & tukar sisi manual
+│   │   ├── PlayerBox.tsx       # Kartu identitas pemain & indikator kok 🏸
+│   │   ├── Scoreboard.tsx      # Papan skor utama yang sinkron sisi wasit
+│   │   ├── SetupScreen.tsx     # Layar awal input pemain, kategori, & sistem
+│   │   └── WinnerOverlay.tsx   # Layar selebrasi pemenang & ringkasan statistik
 │   ├── hooks/
-│   │   └── useMatch.js         # Custom hook pengelola state laga, timer & auto-save
+│   │   └── useMatch.ts         # Custom hook pengelola state laga, timer & auto-save
+│   ├── types/
+│   │   └── badminton.ts        # TypeScript interface domain & state
 │   ├── utils/
-│   │   └── storage.js          # Helper LocalStorage & kalkulator statistik pemain
-│   ├── App.jsx                 # Komponen akar navigasi layar
-│   ├── gameLogic.js            # Pure-function engine aturan badminton
+│   │   ├── storage.test.ts     # Unit test engine penyimpanan & keamanan prototype
+│   │   └── storage.ts          # Helper LocalStorage & analitik statistik
+│   ├── App.tsx                 # Komponen akar navigasi layar
+│   ├── gameLogic.test.ts       # Unit test engine skor 30 pindah bola & rally
+│   ├── gameLogic.ts            # Pure-function engine aturan badminton (strict TS)
 │   ├── index.css               # Gaya global Tailwind & pola net lapangan
-│   └── main.jsx                # Entry point aplikasi React
+│   ├── main.tsx                # Entry point aplikasi React & PWA registration
+│   └── vite-env.d.ts           # Type definitions Vite client
+├── eslint.config.js            # Konfigurasi ESLint modern (flat config)
 ├── index.html                  # Template HTML utama
 ├── package.json                # Dependensi dan skrip proyek
 ├── tailwind.config.js          # Konfigurasi Tailwind & keyframes animasi
-└── vite.config.js              # Konfigurasi bundler Vite
+├── tsconfig.json               # Konfigurasi compiler TypeScript (strict mode)
+├── tsconfig.node.json          # Konfigurasi TypeScript untuk file bundler
+└── vite.config.js              # Konfigurasi bundler Vite & runner Vitest
 ```
 
 ---
@@ -223,4 +232,9 @@ Aturan permainan diimplementasikan sebagai fungsi murni (*pure functions*) yang 
 
 ## 📄 Lisensi
 
-Proyek ini dibuat untuk kebutuhan papan skor pertandingan bulu tangkis digital. Bebas digunakan dan dikembangkan lebih lanjut.
+Proyek ini dilisensikan di bawah **PolyForm Noncommercial License 1.0.0** (Non-Komersial).
+
+* ✅ **GRATIS** untuk penggunaan pribadi, komunitas bulu tangkis, latihan GOR, turnamen tarkam non-komersial, edukasi, dan riset.
+* ❌ **DILARANG** untuk tujuan komersial (dijual ulang, dijadikan platform SaaS/layanan berbayar, atau monetisasi komersial berbayar) tanpa izin tertulis dari pemilik hak cipta.
+
+Detail ketentuan lengkap dapat dilihat pada berkas [LICENSE](file:///Users/bara/score/LICENSE).
