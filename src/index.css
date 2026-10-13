@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* === Global resets === */
+*,
+*::before,
+*::after {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100dvh;
+  overflow: hidden;
+  overscroll-behavior: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* === Custom utility layers === */
+@layer components {
+  /* Glass panel effect */
+  .glass-panel {
+    @apply bg-dark-card/85 backdrop-blur-xl;
+  }
+
+  /* Court net dashed pattern */
+  .net-dashed {
+    background: repeating-linear-gradient(
+      90deg,
+      #e8d44d 0px,
+      #e8d44d 8px,
+      transparent 8px,
+      transparent 14px
+    );
+  }
+
+  /* Court net vertical dashed pattern for umpire view */
+  .net-vertical {
+    background: repeating-linear-gradient(
+      180deg,
+      #ffffff 0px,
+      #ffffff 6px,
+      rgba(255, 255, 255, 0.25) 6px,
+      rgba(255, 255, 255, 0.25) 12px
+    );
+  }
+}
+
+/* === Reduced Motion === */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-shuttle-bob,
+  .animate-pulse-warn,
+  .animate-spin-slow,
+  .animate-trophy-bounce,
+  .animate-confetti-fall,
+  .animate-swap-right,
+  .animate-swap-left,
+  .animate-swap-up,
+  .animate-swap-down,
+  .animate-court-flip {
+    animation: none !important;
+  }
+}
