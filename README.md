@@ -1,5 +1,10 @@
 # 🏸 Papan Skor Badminton Digital (Sistem 30 Pindah Bola & Rally Point)
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-scoreboard--i6n.pages.dev-22d3ee?style=for-the-badge&logo=cloudflare&logoColor=white)](https://scoreboard-i6n.pages.dev/)
+[![Cloudflare Pages](https://img.shields.io/badge/Deployed_on-Cloudflare_Pages-F38020?style=for-the-badge&logo=cloudflarepages&logoColor=white)](https://scoreboard-i6n.pages.dev/)
+
+> 🌐 **Aplikasi Live / Siap Pakai**: [https://scoreboard-i6n.pages.dev/](https://scoreboard-i6n.pages.dev/)
+
 Aplikasi web papan skor digital interaktif modern (*mobile-first*, PWA) yang dirancang khusus untuk mempermudah wasit dan pemain dalam pertandingan bulu tangkis, baik sistem klasik komunitas/tarkam (**30 Pindah Bola**) maupun standar resmi BWF (**Rally Point**).
 
 Dilengkapi tampilan visual lapangan horizontal dari **sudut pandang wasit (*umpire view*)**, pelacakan posisi pemain di atas lapangan secara presisi, pencatatan waktu pertandingan (*live timer*), serta modul analitik statistik pemain dan rekor *head-to-head*.
@@ -167,11 +172,13 @@ scoreboard/
    npm test            # Menjalankan unit test suite (vitest run)
    ```
 
-5. **Kompilasi untuk produksi (*production build*)**:
+5. **Kompilasi & Deploy Produksi**:
    ```bash
    npm run build
    ```
-   Hasil *bundle* siap di-deploy (misalnya ke Cloudflare Pages, Vercel, atau Netlify) di direktori `dist/`.
+   Hasil *bundle* siap di-deploy di direktori `dist/`.
+   Aplikasi telah aktif dideploy di **Cloudflare Pages**:
+   👉 **[https://scoreboard-i6n.pages.dev/](https://scoreboard-i6n.pages.dev/)**
 
 ---
 
