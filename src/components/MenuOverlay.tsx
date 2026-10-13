@@ -4,6 +4,7 @@ interface MenuOverlayProps {
   onReset: () => void;
   onNewMatch: () => void;
   onOpenHistory: () => void;
+  onSwapSides: () => void;
 }
 
 export default function MenuOverlay({
@@ -12,6 +13,7 @@ export default function MenuOverlay({
   onReset,
   onNewMatch,
   onOpenHistory,
+  onSwapSides,
 }: MenuOverlayProps) {
   if (!show) return null;
 
@@ -29,11 +31,22 @@ export default function MenuOverlay({
         </button>
 
         <button
-          onClick={onReset}
+          onClick={() => {
+            onClose();
+            onSwapSides();
+          }}
           className="mb-2 flex w-full items-center gap-2.5 rounded-xl bg-dark-surface1 px-4 py-3 text-left text-xs font-semibold text-slate-200 transition-colors hover:bg-dark-surface2 active:scale-[0.98]"
         >
           <span>🔄</span>
-          <span>Reset Pertandingan</span>
+          <span>Tukar Sisi Lapangan (Kiri / Kanan)</span>
+        </button>
+
+        <button
+          onClick={onReset}
+          className="mb-2 flex w-full items-center gap-2.5 rounded-xl bg-dark-surface1 px-4 py-3 text-left text-xs font-semibold text-slate-200 transition-colors hover:bg-dark-surface2 active:scale-[0.98]"
+        >
+          <span>⏮️</span>
+          <span>Reset Pertandingan Ini</span>
         </button>
 
         <button

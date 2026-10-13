@@ -71,11 +71,13 @@ export default function CourtView({
     onClearEvents();
   }, [events, onClearEvents]);
 
-  const handleIntervalOk = useCallback(() => {
+  const handleIntervalContinue = useCallback((swapSides: boolean) => {
     setShowInterval(false);
-    onSwapSides();
-    setCourtFlip(true);
-    setTimeout(() => setCourtFlip(false), 800);
+    if (swapSides) {
+      onSwapSides();
+      setCourtFlip(true);
+      setTimeout(() => setCourtFlip(false), 800);
+    }
   }, [onSwapSides]);
 
   const handleNewMatch = useCallback(() => {
@@ -120,7 +122,13 @@ export default function CourtView({
       />
 
       {/* Overlays */}
-      <IntervalOverlay show={showInterval} onOk={handleIntervalOk} />
+      <IntervalOverlay
+        show={showInterval}
+        scoreA={state.scoreA}
+        scoreB={state.scoreB}
+        intervalScore={state.intervalScore}
+        onContinue={handleIntervalContinue}
+      />
       <WinnerOverlay
         show={showWinner}
         state={state}
@@ -137,6 +145,7 @@ export default function CourtView({
         onReset={handleMenuReset}
         onNewMatch={handleMenuNew}
         onOpenHistory={handleMenuHistory}
+        onSwapSides={onSwapSides}
       />
     </div>
   );

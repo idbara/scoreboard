@@ -85,7 +85,7 @@ Dapat diakses kapan saja dari layar **Setup**, tombol **Menu** saat pertandingan
 ### 6. 👆 Kontrol Cepat & Antarmuka Responsif
 * **Ketuk Langsung di Lapangan**: Selain tombol bawah (*Tim A Menang* / *Tim B Menang*), wasit dapat mencetak poin dengan mengetuk langsung area lapangan kiri atau kanan.
 * **Fitur Undo**: Membatalkan reli terakhir jika terjadi kesalahan input skor/servis.
-* **Peringatan Interval**: Layar jeda otomatis saat tim mencapai skor 15 (pada sistem 30) atau skor 11 (pada sistem 21) dengan opsi tukar tempat (*swap sides*).
+* **Peringatan Interval Fleksibel**: Layar jeda otomatis saat salah satu tim mencapai skor 15 (pada sistem 30) atau skor 11 (pada sistem 21) dengan **dua pilihan aksi**: *Tukar Sisi & Lanjutkan* atau *Tetap di Sisi Ini & Lanjut* (berguna untuk pertandingan sistem berseri/best-of-3 BWF saat tukar sisi hanya di akhir game). Wasit juga dapat menukar sisi secara manual kapan saja lewat Menu.
 * **Selebrasi Kemenangan**: Animasi piala dan hujan konfeti saat pertandingan selesai.
 * **Dukungan Offline (PWA)**: Dilengkapi `manifest.json` dan *Service Worker* (`sw.js`) agar dapat diinstal di smartphone/tablet dan tetap berjalan lancar tanpa koneksi internet di dalam GOR.
 
