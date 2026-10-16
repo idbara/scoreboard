@@ -1,19 +1,25 @@
+import type { MatchType, TeamId } from '../types/badminton';
+
 interface MenuOverlayProps {
   show: boolean;
+  matchType?: MatchType;
   onClose: () => void;
   onReset: () => void;
   onNewMatch: () => void;
   onOpenHistory: () => void;
   onSwapSides: () => void;
+  onSwapTeamPlayers?: (team: TeamId) => void;
 }
 
 export default function MenuOverlay({
   show,
+  matchType,
   onClose,
   onReset,
   onNewMatch,
   onOpenHistory,
   onSwapSides,
+  onSwapTeamPlayers,
 }: MenuOverlayProps) {
   if (!show) return null;
 
@@ -40,6 +46,32 @@ export default function MenuOverlay({
           <span>🔄</span>
           <span>Tukar Sisi Lapangan (Kiri / Kanan)</span>
         </button>
+
+        {matchType !== 'tunggal' && onSwapTeamPlayers && (
+          <>
+            <button
+              onClick={() => {
+                onClose();
+                onSwapTeamPlayers('A');
+              }}
+              className="mb-2 flex w-full items-center gap-2.5 rounded-xl bg-dark-surface1 px-4 py-3 text-left text-xs font-semibold text-team-a-light transition-colors hover:bg-dark-surface2 active:scale-[0.98]"
+            >
+              <span>👥</span>
+              <span>Tukar Posisi Pemain Tim A (Kanan ↔ Kiri)</span>
+            </button>
+
+            <button
+              onClick={() => {
+                onClose();
+                onSwapTeamPlayers('B');
+              }}
+              className="mb-2 flex w-full items-center gap-2.5 rounded-xl bg-dark-surface1 px-4 py-3 text-left text-xs font-semibold text-team-b-light transition-colors hover:bg-dark-surface2 active:scale-[0.98]"
+            >
+              <span>👥</span>
+              <span>Tukar Posisi Pemain Tim B (Kanan ↔ Kiri)</span>
+            </button>
+          </>
+        )}
 
         <button
           onClick={onReset}

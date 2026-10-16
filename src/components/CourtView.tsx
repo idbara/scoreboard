@@ -18,6 +18,7 @@ interface CourtViewProps {
   onReset: () => void;
   onEndMatch: () => void;
   onSwapSides: () => void;
+  onSwapTeamPlayers?: (team: TeamId) => void;
   onClearEvents: () => void;
   onOpenHistory: () => void;
 }
@@ -32,6 +33,7 @@ export default function CourtView({
   onReset,
   onEndMatch,
   onSwapSides,
+  onSwapTeamPlayers,
   onClearEvents,
   onOpenHistory,
 }: CourtViewProps) {
@@ -141,11 +143,13 @@ export default function CourtView({
       />
       <MenuOverlay
         show={showMenu}
+        matchType={state.matchType}
         onClose={() => setShowMenu(false)}
         onReset={handleMenuReset}
         onNewMatch={handleMenuNew}
         onOpenHistory={handleMenuHistory}
         onSwapSides={onSwapSides}
+        onSwapTeamPlayers={onSwapTeamPlayers}
       />
     </div>
   );

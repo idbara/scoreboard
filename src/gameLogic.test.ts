@@ -75,6 +75,48 @@ describe('Badminton Game Logic Engine', () => {
       const winner = newState.scoreA > newState.scoreB ? 'A' : 'B';
       expect(winner).toBe('A');
     });
+
+    it('pindah bola saat skor ganjil SELALU servis pertama dari kotak kanan (serverIndex = 0)', () => {
+      // Setup state di mana Tim B memiliki skor ganjil (skor 1)
+      let state = createInitialState('Budi', 'Andi', 'Candra', 'Dedi', 'A', 'pindah_bola', 30, 'ganda');
+
+      // 1. Tim A cetak skor 1
+      state = processRally(state, 'A').state;
+      expect(state.scoreA).toBe(1);
+
+      // 2. Tim A kalah pada Bola 1 -> berganti ke Bola 2
+      state = processRally(state, 'B').state;
+      expect(state.ball).toBe(2);
+
+      // 3. Tim A kalah pada Bola 2 -> Pindah Bola ke Tim B (skor B = 0)
+      state = processRally(state, 'B').state;
+      expect(state.servingTeam).toBe('B');
+      expect(state.ball).toBe(1);
+      expect(state.serverIndex).toBe(0); // Servis pertama Tim B dari kanan
+
+      // 4. Tim B cetak skor 1 (skor B menjadi ganjil)
+      state = processRally(state, 'B').state;
+      expect(state.scoreB).toBe(1);
+      expect(state.serverIndex).toBe(1); // Setelah dapat poin, geser ke kiri
+
+      // 5. Tim B kalah pada Bola 1 -> Bola 2
+      state = processRally(state, 'A').state;
+      expect(state.ball).toBe(2);
+
+      // 6. Tim B kalah pada Bola 2 -> Pindah Bola ke Tim A (skor A = 1, GANJIL)
+      state = processRally(state, 'A').state;
+      expect(state.servingTeam).toBe('A');
+      expect(state.scoreA).toBe(1); // Skor ganjil
+      expect(state.ball).toBe(1);
+      // BUG FIX VERIFICATION:
+      // Meskipun skor A ganjil (1), servis pertama (Bola 1) HARUS selalu dari kanan (0), BUKAN dari kiri (1)!
+      expect(state.serverIndex).toBe(0);
+
+      // 7. Ketika Tim A dapat poin baru -> geser ke kiri (1) dan tukar posisi
+      const afterPoint = processRally(state, 'A').state;
+      expect(afterPoint.scoreA).toBe(2);
+      expect(afterPoint.serverIndex).toBe(1); // Geser ke kiri
+    });
   });
 
   describe('Sistem Rally Point (Modern BWF)', () => {

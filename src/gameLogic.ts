@@ -192,7 +192,7 @@ function processGandaPindahBola(state: GameState, winningTeam: TeamId, events: s
       state.ball = 1;
       state.servingTeam = winningTeam;
       state.isFirstServe = false;
-      setServerByScore(state, state.servingTeam);
+      state.serverIndex = 0 as ServerIndex; // Servis pertama selalu dari kotak kanan
       events.push('pindah-bola');
     } else if (ball === 1) {
       state.ball = 2;
@@ -202,7 +202,7 @@ function processGandaPindahBola(state: GameState, winningTeam: TeamId, events: s
       state.ball = 1;
       state.servingTeam = winningTeam;
       state.isFirstServe = false;
-      setServerByScore(state, state.servingTeam);
+      state.serverIndex = 0 as ServerIndex; // Servis pertama selalu dari kotak kanan
       events.push('pindah-bola');
     }
   }
@@ -296,12 +296,7 @@ function checkWinCondition(state: GameState, events: string[]): void {
   }
 }
 
-function setServerByScore(state: GameState, team: TeamId): void {
-  const score = team === 'A' ? state.scoreA : state.scoreB;
-  state.serverIndex = (score % 2 === 0 ? 0 : 1) as ServerIndex;
-}
-
-function swapTeamPositions(state: GameState, team: TeamId): void {
+export function swapTeamPositions(state: GameState, team: TeamId): void {
   if (team === 'A') {
     const p0 = state.teamA[0];
     const p1 = state.teamA[1];

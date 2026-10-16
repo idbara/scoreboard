@@ -18,6 +18,7 @@ export default function App() {
     resetMatch,
     endMatch,
     swapSides,
+    swapTeamPlayers,
     clearEvents,
   } = useMatch();
 
@@ -40,6 +41,7 @@ export default function App() {
           onReset={resetMatch}
           onEndMatch={endMatch}
           onSwapSides={swapSides}
+          onSwapTeamPlayers={swapTeamPlayers}
           onClearEvents={clearEvents}
           onOpenHistory={() => setShowHistory(true)}
         />

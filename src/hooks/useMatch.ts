@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
-import { createInitialState, processRally } from '../gameLogic';
+import { createInitialState, processRally, swapTeamPositions } from '../gameLogic';
 import { saveMatch, formatDuration } from '../utils/storage';
 import type { GameState, GameMode, MatchType, TeamId, MatchRecord } from '../types/badminton';
 
@@ -169,6 +169,16 @@ export function useMatch() {
     });
   }, []);
 
+  const swapTeamPlayers = useCallback((team: TeamId): void => {
+    setState((prev) => {
+      if (!prev || prev.matchType === 'tunggal') return prev;
+      setHistory((h) => [...h, JSON.parse(JSON.stringify(prev)) as GameState]);
+      const next = JSON.parse(JSON.stringify(prev)) as GameState;
+      swapTeamPositions(next, team);
+      return next;
+    });
+  }, []);
+
   const clearEvents = useCallback((): void => setEvents([]), []);
 
   return {
@@ -184,6 +194,7 @@ export function useMatch() {
     resetMatch,
     endMatch,
     swapSides,
+    swapTeamPlayers,
     clearEvents,
   };
 }
